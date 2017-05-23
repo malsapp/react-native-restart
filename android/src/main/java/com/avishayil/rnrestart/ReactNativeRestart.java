@@ -1,5 +1,6 @@
 package com.avishayil.rnrestart;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -35,12 +36,9 @@ public class ReactNativeRestart extends ReactContextBaseJavaModule {
             return;
         }
 
-        currentActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                currentActivity.recreate();
-            }
-        });
+        Intent intent = new Intent(currentActivity, currentActivity.getClass());
+        currentActivity.startActivity(intent);
+        System.exit(0);
     }
 
     private void loadBundle() {
